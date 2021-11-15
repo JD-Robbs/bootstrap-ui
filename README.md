@@ -23,7 +23,7 @@ For version info see [version map](https://github.com/FriendsOfCake/bootstrap-ui
 
 * CakePHP 4.x
 * Bootstrap 5.x
-* npm 5.x
+* npm 6.x
 * Popper.js 2.x
 * Bootstrap Icons 1.5.x
 
@@ -81,6 +81,13 @@ You can either use the Bootstrap commands to make the necessary changes, or do t
 
    This will fetch all assets, copy the distribution assets to the BootstrapUI plugin's webroot directory, and symlink
    (or copy) them to your application's `webroot` directory.
+
+   If you want to install the latest minor versions of the assets instead of the exact pinned ones, you can use the
+   `--latest` option:
+
+   ```
+   bin/cake bootstrap install --latest
+   ```
 
 2. You will need to modify your `src/View/AppView` class to either extend `BootstrapUI\View\UIView` or
    use the trait `BootStrapUI\View\UIViewTrait`. For doing this you can either use the `modify_view` command, or
@@ -271,7 +278,7 @@ Currently, bake templates for the following bake subcommands are included:
 ### `template`
 
 Additionally to the default `index`, `add`, `edit`, and `view` templates, a `login` template is available too. While
-the default CRUD action view templates can be utilised like this:
+the default CRUD action view templates can be utilized like this:
 
 ```bash
 bin/cake bake template ControllerName -t BootstrapUI
@@ -910,7 +917,7 @@ Use a different icon set:
 $this->Flash->success('Message with different icon set.', [
     'params' => [
         'icon' => [
-            'iconSet' => 'fas',
+            'namespace' => 'fas',
             'prefix' => 'fa',
             'name' => 'microphone-slash',
             'size' => '2xl',
@@ -929,7 +936,7 @@ Use a different icon set for all flash messages:
 $this->loadHelper('Html', [
     'className' => 'BootstrapUI.Html',
     'iconDefaults' => [
-        'iconSet' => 'fas',
+        'namespace' => 'fas',
         'prefix' => 'fa',
     ],
 ]);
@@ -1022,11 +1029,11 @@ This plugin ships Bootstrap icon classes for the following sizes that center-ali
 
 #### Using a different icon set
 
-You can use a different icon set by configuring the `iconSet` and `prefix `options, either per `icon()` call:
+You can use a different icon set by configuring the `namespace` and `prefix `options, either per `icon()` call:
 
 ```php
 echo $this->Html->icon('microphone-slash', [
-    'iconSet' => 'fas',
+    'namespace' => 'fas',
     'prefix' => 'fa',
 ]);
 ```
@@ -1037,7 +1044,7 @@ or globally for all usages of `HtmlHelper::icon()` by configuring the HTML helpe
 $this->loadHelper('Html', [
     'className' => 'BootstrapUI.Html',
     'iconDefaults' => [
-        'iconSet' => 'fas',
+        'namespace' => 'fas',
         'prefix' => 'fa',
     ],
 ]);
